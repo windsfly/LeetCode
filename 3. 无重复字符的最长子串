@@ -1,0 +1,31 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+    
+        i = 0
+        j = 0
+        ret = 0
+        lt = list()
+        #for k in range(255):
+        #    lt.append(0)
+        lt = [0]*128
+        length = len(s)
+        intLt = []
+        for k in range(length):
+            intLt.append(ord(s[k]))
+        
+        while i < (length - ret):
+            while j < length:
+                #intLt.append(ord(s[j]))
+                if lt[intLt[j]] == 1:
+                    break
+                lt[intLt[j]] = 1
+                j += 1
+            if (j - i) > ret:
+                ret = j - i
+            lt[intLt[i]] = 0
+            i += 1
+        return  ret
