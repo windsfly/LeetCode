@@ -1,0 +1,17 @@
+class Solution:
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        import sys
+        profit = 0
+        lowPrice = sys.maxsize
+        for val in prices:
+            if val > lowPrice:
+                profit += val - lowPrice
+                lowPrice = val
+            else:
+                lowPrice = val
+        return profit
+        
