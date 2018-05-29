@@ -1,0 +1,26 @@
+class Solution:
+    def rotate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        lg = len(nums)
+        k %= lg
+        if k== 0 or lg == 0:
+            return
+        rev = [0] * k
+        for i in range(k):
+            rev[i] = nums[i]
+            last = lg - k + i
+            nums[i] = nums[last]
+            while last >= (2*k):
+                nums[last] = nums[last-k]
+                last -= k
+        right =2*k
+        if right > lg:
+            right = lg
+        for i in range(k,right):
+            nums[i] = rev[i-k]
+        return
+            
