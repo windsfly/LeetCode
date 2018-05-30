@@ -1,0 +1,14 @@
+class Solution:
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        dt = dict()
+        st = set(nums)
+        for e in nums:
+            if e in dt:
+                st.remove(e)
+            dt[e] =1
+        return st.pop()
+ 
