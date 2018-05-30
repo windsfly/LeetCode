@@ -8,3 +8,13 @@ class Solution:
         for e in nums:
             st.add(e)
         return len(st) != len(nums)
+        
+        
+        
+  class Solution:
+    def containsDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        return len(set(nums)) != len(nums)
