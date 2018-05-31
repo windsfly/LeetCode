@@ -1,0 +1,20 @@
+class Solution:
+    def plusOne(self, digits):
+        """
+        :type digits: List[int]
+        :rtype: List[int]
+        """
+        idx = len(digits) -1
+        f = 1
+        while idx >= 0:
+            digits[idx] += f
+            if digits[idx] >= 10:
+                digits[idx] -= 10
+                f = 1
+            else:
+                f = 0
+                break
+            idx -= 1
+        if f == 1:
+            digits.insert(0,1)
+        return digits
