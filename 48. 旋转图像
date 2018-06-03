@@ -1,0 +1,18 @@
+class Solution:
+    def rotate(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: void Do not return anything, modify matrix in-place instead.
+        """
+        l=len(matrix)
+        l1=int((l+1)/2)
+        l3=int(l/2)
+        for i in range(l1):
+            for j in range(l3):
+                vi=l-i-1
+                vj=l-j-1
+                val=matrix[i][j]
+                matrix[i][j]=matrix[vj][i]
+                matrix[vj][i]=matrix[vi][vj]
+                matrix[vi][vj]=matrix[j][vi]
+                matrix[j][vi]=val
