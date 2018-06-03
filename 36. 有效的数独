@@ -1,0 +1,44 @@
+class Solution:
+    def isHit(self,val,dt):
+        if val == '.':
+            return False
+        elif val in dt:
+            return True
+        else:
+            dt[val] = 1
+            return False
+    def isValidSudoku(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: bool
+        """
+        dt = dict()
+        dt1 = dict()
+        dt2 = dict()
+        for i in range(9):
+            dt.clear()
+            dt1.clear()
+            dt2.clear()
+            for j in range(9):
+                if self.isHit(board[i][j],dt):
+                    return False
+            for j in range(9):
+                v = board[j][i]
+                if v == '.':
+                    continue
+                elif v in dt1:
+                    return False
+                else:
+                    dt1[v] = 1
+            for j in range(9):
+                vi =3*int(i/3) + int(j/3)
+                vj =3*(i%3) + j%3
+                v = board[vi][vj]
+                if v == '.':
+                    continue
+                elif v in dt2:
+                    return False
+                else:
+                    dt2[v] =1
+        return True
+                
