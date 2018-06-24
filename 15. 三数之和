@@ -1,0 +1,50 @@
+class Solution:
+    def  diviceSearch(self,st,i,j,val):
+        while i < j:
+            mid = int((i+j)/2)
+            if st[mid] < val :
+                i = mid + 1
+            else:
+                j = mid
+        return j
+    def  diviceSearch2(self,st,i,j,val):
+        while i < j:
+            mid = int((i+j+1)/2)
+            if st[mid] > val :
+                j = mid - 1
+            else:
+                i = mid
+        return j
+    def threeSum(self, st):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        st.sort()
+        lt = []
+        len1 = len(st)-1
+        lpend = self.diviceSearch(st,0,len1,0)+1
+
+        for i  in range(lpend):
+            if i > 0 and st[i-1] == st[i]:
+                continue
+            mv = -st[i]
+            lft = self.diviceSearch(st,i+1,len1,mv-st[len1])
+            rght = self.diviceSearch2(st,lft,len1,mv-st[lft])
+            while lft < rght:
+                val = st[lft] + st[rght]
+                if val > mv:
+                    rght -= 1
+                elif val < mv:
+                    lft += 1
+                else:
+                    lt.append([st[i],st[lft],st[rght]])
+                    while lft < rght:
+                        rght -= 1
+                        if st[rght] != st[rght+1]:
+                            break
+                    while lft < rght :
+                        lft += 1
+                        if st[lft] != st[lft-1]:
+                            break       
+        return lt
